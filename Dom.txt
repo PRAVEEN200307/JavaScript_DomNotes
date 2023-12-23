@@ -1,0 +1,496 @@
+Document Object Model
+
+Document
+--------
+html,xml
+
+object
+------
+tags,Elements
+(Eg.<h1>><img>,etc.)
+
+Models
+------
+layout struture
+
+What is dom
+ The W3c Document Object model is a platform and language-languae-neutral interfae that allows programs
+and script to dunamically access and update the contet ,strutuer and stle of a document.
+
+The w3c Dom standard in separated into 3 different parts:
+  .Core Dom -standard model for all document types
+  .Xml Dom- standard model for Xml document
+  
+Rendering Engine
+----------------
+*html code
+*css code
+  processing to object as dom give some ui 
+
+------------------------------------------------------------
+window Obect
+  windows object only work on the windows
+  it is not working for node js
+
+
+console.log(window.innerHeight);
+console.log(window.innerWidth)
+
+window.open("https://google.com");
+
+window.moveTo(500,100);
+window.resizeTo(1000,600);
+window.prompt("Enter your name");
+window.print();
+
+
+--------------------------------------------------------
+Browser Object Model(BOM)
+
+.screen
+.location
+.histry
+.Navigator
+
+
+screen
+  screen.width
+  1600
+  screen.height
+  900
+
+console.log(screen.width);
+console.log(screen.height);
+
+
+//Location
+console.log(window);
+console.log(window.location);
+
+//histry
+console.log(history);
+console.log(history.back());
+
+//Navigator
+console.log(navigator);
+console.log(navigator.appName);
+
+--------------------------------------
+//Exploring DOm Doucument
+
+console.dir(document);
+
+--------------------------------------
+//Dom properties and meathods
+   //document.write();
+
+  const person={
+    name:"Praveen", //properties
+    place:"Thirumpoondi",
+    greetUser(){
+      return `I am ${this.name} from ${this.place}`;
+    }
+   }
+   
+const personOne =person.greetUser();
+
+//challenge :Dynamically get name and place
+
+const userNAME =prompt("What is your name");
+const placeInput =prompt("Where are you from");
+
+person.name=userNAME;
+person.place=placeInput;
+
+// document.body.innerHTML =  person.greetUser();
+document.write(person.greetUser());
+
+console.log(userNAME,placeInput);
+---------------------------------------------
+domcontentLoded
+  >html agter give domcontentloded
+  >it is work head tag
+  >work cache memeory
+window.load
+ >this is wrok all is well like image
+window.onload =function()
+image.offsetWidth,imge.offsetHeight
+
+window.onunload
+window.onbeforeunload
+-----------------------------------------------
+async &defer
+async
+-----
+ script are fetched asynchronously and executed
+ immediately
+ 
+ indepanentent link
+
+defer
+-----
+  Scrit are fetche daynchronously and excuted after
+ executed after the HTML is completely parsed
+
+-----------------------------------------------
+Node
+----  
+//html references
+  console.dir(document.documentElement.lang)
+
+  console.log(document.head);
+  console.log(document.body);
+
+  console.log(document.body.constructor.name);
+  
+
+  console.log(document.body instanceof HTMLBodyElement);
+  console.log(document.body instanceof HTMLElement);
+  console.log(document.body instanceof Element);
+  console.log(document.body instanceof Node);
+  console.log(document.body instanceof EventTarget);
+  
+  //nodetype
+  console.log(document.body.nodeType) 
+       //Node.Element_node(1);
+       //Node.Attribute_node(2); 
+  console.log(document.body.nodeName)
+
+-------------------------------------------------------------
+Selct DOm Element
+
+  1.getElemntById();
+  2.getElemntByClassName();
+  3.getElementByTagName();
+  4.queryselector();
+  5.queryselectorAll();
+
+12. getElementById()
+
+//button
+const btn =document.getElementById('input-btn');
+//user -input
+const userInput =document.getElementById('user-input');
+
+let foodContaiener =document.getElementById('food-container');
+
+
+btn.addEventListener('click',()=>{
+     foodContaiener.innerHTML +=`<li class="list-items"> ${userInput.value} </li>`;
+});
+
+let foodItems=document.getElementsByClassName('list-items');
+
+let allFood =[].map.call(foodItems,(food)=> food.textContent);
+console.log(allFood);
+
+-------------------------------------------------------------------
+16. Creating DOM elements using javascript
+--------------------------------------
+creating class name
+div.classname ="alert";
+
+Textcontent
+createTextNode --preference to speed
+--------------
+ creating a text,u
+pdate the text
+ex
+const textNode =document.createTextNode("Food is updated via TextNode");
+div.append(textNode);
+
+-----------------------------------------------------------
+17.Changing content of Dom elemnets
+-----------------------------------
+
+//-textcontent*
+    rap the content from html including spaces
+    won't accpet the css style
+//-innertext
+     wrap the content execute like user
+//-innerHTML
+    allow the elements
+let content = document.createTextNode(`${userInput.value}`);
+
+set the content
+alertEl.innerText = "Hello,i've been modified";
+
+----------------------------------------------------------
+18.innerHTML vs createElement()
+-----------------------------
+
+innerHtml
+  give a type of string
+
+createElement()* prefer thi
+   creating a element  gives a object
+----------------------------------------------------
+19.Document fragement for performance
+  -------------------------------------
+ append()
+        reflow decrease a performance ex :1s
+        append each time 
+
+ createDocumentFragment();
+   > it is just a memory 
+   > it is append only one time
+
+  Another way to create fragment
+  new DocumentFragment()--construtor
+
+
+
+const foods=['briyani','parota','chiken Rice','chiken 65','fish fry'];
+
+const memory=new DocumentFragment()
+
+    for(let foodItems of foods){
+        const createliEL =document.createElement('li');
+         createliEL.className="list-items";
+        const elemnt=createliEL.textContent=foodItems;
+        memory.append(createliEL) 
+    }
+
+   foodContaiener.append(memory);
+
+------------------------------------------------
+20.Inserting DOM Elements using javascript
+
+append
+prepand
+
+before
+after
+
+
+let foodContaiener =document.getElementById('food-container');
+
+
+const createliEL =document.createElement('li');
+createliEL.className="list-items"
+createliEL.textContent=`Maagi`;
+
+foodContaiener.append(createliEL); //append
+foodContaiener.prepend(createliEL); //prepend
+
+foodContaiener.before(createliEL); //before
+foodContaiener.after(createliEL); //after
+
+
+
+
+//Old way of doing
+
+foodContaiener.parentNode.insertBefore(createliEL,foodContaiener);//old way--before
+foodContaiener.parentNode.insertBefore(createliEL,foodContaiener.nextSibling);//old way--after
+
+---------------------------------------------------------
+Inserting DOm as string using html
+ 
+
+//insertAdjecentHTML();
+//insertAdjacentText();
+//insertAdjacentElement();
+
+
+/**
+ * beforebegin
+ * <ul>
+ *   afterbegin
+ * 
+ *  beforeend 
+ * </ul>
+ * afterend
+ */
+
+foodContaiener.insertAdjacentHTML("afterbegin","<h1> I am here </h1>");
+foodContaiener.insertAdjacentHTML("afterend","I am here");
+foodContaiener.insertAdjacentHTML("beforebegin","I am here");
+foodContaiener.insertAdjacentHTML("beforeend","I am here");
+                                                                         
+
+foodContaiener.insertAdjacentText("beforeend","<h1>I am here</h1>");
+
+const p = document.createElement('li');
+p.textContent="biriyani";
+p.className="list-items"
+foodContaiener.insertAdjacentElement("beforeend",p);
+
+-----------------------------------------------------------------
+Replacing DOM Elements Using javascript
+---------------------------------------
+
+
+
+//Replace Dom elememts
+  //replaceWith
+  //old way
+    //  replaceChild
+    //  replaceChildren
+            replace all the children add the new child
+let foodContaiener =document.getElementById('food-container');
+
+let samberLi =document.querySelector('#food-container :first-child');
+// console.log(samberLi);
+
+const li =document.createElement('li');
+li.textContent ="Paruppu samber";
+li.className ="list-items";
+
+// samberLi.replaceWith(li); 
+
+//old way
+  //samberLi.parentNode.replaceChild(li,samberLi);//old way
+  
+const li1 = document.createElement("li");
+li1.textContent="mulaki sambar";
+li1.className="list-items";
+
+const li2 = document.createElement("li");
+li2.textContent="carrot rice";
+li2.className="list-items";
+
+foodContaiener.replaceChildren(li1,li2);
+
+------------------------------------------------------------
+23.Cloning Dom elements 
+
+cloneNode(true);
+//Clone
+ Slet foodContaiener =document.getElementById('food-container');
+
+ const cloneEL =foodContaiener.cloneNode(); //give only struture like html
+ console.log(cloneEL);
+
+//true all the elemen and copy gice a copy of the elements
+ const cloneTrueEL =foodContaiener.cloneNode(true); 
+ console.log(cloneTrueEL);
+
+-------
+example for cloned
+
+const btn =document.getElementById('input-btn');
+const userInput =document.getElementById('user-input');
+
+let foodContaiener =document.getElementById('food-container');
+console.log(foodContaiener);
+btn.addEventListener('click',()=>{
+   const li =document.createElement('li');
+   li.textContent =userInput.value;
+   li.className="list-items"
+   foodContaiener.append(li);
+});
+//Clone
+const  AsyncBtn=document.getElementById('AsyncBtn');
+
+AsyncBtn.addEventListener('click',()=>{
+     
+    let cloneDiv =document.getElementById('duplicate');
+    cloneDiv.innerHTML='';  
+    const cloneTrueEL =foodContaiener.cloneNode(true);
+    cloneDiv.append(cloneTrueEL);
+});
+
+-------------------------------------------------------------------
+24. Removing Dom Elements
+--------------------------
+ remove()
+ old way
+   removeChild()
+    <li class="list-items">
+                <div>porial</div>
+                <div onclick="removeitem(event)">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </li>
+
+  function removeitem(event){
+  const removeLi =event.target.parentNode.parentNode;
+  removeLi.remove();  
+}
+
+
+ 
+  //old way of removeing dom elements
+  //removeLi.parentNode.removeChild(removeLi);
+
+-------------------------------------------------------------------------------------------
+25. Looping over Dom Elements
+-------------------------------
+
+Challenge:
+---------
+ nodelist to array
+const li=document.querySelectorAll('#food-container li');
+ 
+//for of meathod create pure array
+
+let foodItems =[]
+for(let value of li){
+   foodItems.push(value.children[0].textContent);
+}
+
+console.log(foodItems);
+-----------------------------------
+//for each meathod
+
+li.foreach( (input)=>{
+ console.log(input.childred[0]);
+});
+------------------------------------
+//spread meathod
+
+const newArray =[...li].foreach( (input)=>{
+ console.log(input.childred[0]);
+});
+
+------------------------------------------------------------------------------------------
+26.Finding Child Dom Elements 
+
+children *
+  give child elements most commonly use 
+childNodes
+ >includes all the text nodes and comment nodes
+ firstChild
+ firstElementChild
+ lastChild
+ lastElementChild
+----------------------------------------------------
+27.Finding Parent DOM Elements
+   
+parentNode;
+parentElement; 
+ this is new  all modern browser work it.
+
+console.log(li.parentNode);
+console.log(li.parentElement.parentElement);
+
+closest() meathod
+-----------------
+  select element jump to closest element 
+
+-----------------------------------------------
+28-Finding sibling Dom Elements
+
+nextSibling
+nextElementSibling
+previousElementSibling
+previousSibling
+
+-------------------------------------------------
+29.Element Properties vs HTMLAttributes
+---------------------------------------
+
+console.log("type :",userInput.type);
+console.log('id :',userInput.id);
+console.log("name :",userInput.name);
+console.log("placeholder :",userInput.placeholder);
+console.log(userInput.value);
+userInput.value="praveen"
+console.log(userInput.value);
+
+
+//Atribute
+  userInput.setAttribute('value','Praveen');
+
+---------------------------------------------------------------

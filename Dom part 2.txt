@@ -1,0 +1,396 @@
+30-Setting & Getting HTML Attributes
+------------------------------------
+
+//setAttribute
+userInput.setAttribute('value',`${firstName}`);
+
+//getAttribute
+   gives a values of elements
+
+const inputValue =userInput.getAttribute("isAlive");
+const inputValue1 =userInput.getAttribute("value");
+const placeHolderValue =userInput.getAttribute("placeholder");
+console.log(inputValue);
+console.log(inputValue1);
+console.log(placeHolderValue);
+
+
+console.log(userInput.attributes); //list all attributes of the elements 
+
+get addtribute using index
+--------------------------
+  console.log(userInput.attributes[3].value);
+
+get addtribute using properities (Dot notation)
+--------------------------------
+  console.log(userInput.attributes.placeholder.value);
+
+get addtribute using [breaket notation]
+------------------------------------
+console.log(userInput.attributes['isalive'].value);
+
+//meathods
+ //hasAttribute
+    if attribute math return the true otherwise reutrn the false
+    check for attribute existense
+  const value =userInput.hasAttribute('value');
+  const value1 =userInput.hasAttribute('age');
+  console.log(value);
+  console.log(value1);
+
+//getAttributeNames()
+     gives a attribut keys using array
+
+ //removeAttribute()
+      //remove the attribute 
+   userInput.removeAttribute('isAlive');
+   userInput.removeAttribute('id');
+   
+ //CSSStyleDeclaration
+   console.log(userInput.style); //CSSStyleDeclaration
+
+ //dateset dom perties
+   
+   dataset:DOMStringMap{
+      "isAlive": "Yeah it is attribute value",
+      "interest": "Create a new Thing or Project"
+   };
+
+   > always to prepare to use 
+     like this
+       data-customerAttribute="value";
+       data-is-alive="Yeah it is attribute value"
+       data-interest="Create a new Thing or Project" 
+
+   >it is alway to store dataset properties
+
+ //Attribute properties
+ challenge
+ ---------
+  console.log(userInput.attributes);
+
+   for(let i=0;i <userInput.attributes.length;i++){
+     console.log(userInput.attributes[i].name,'is' ,userInput.attributes[i].value);
+   }
+ or
+   for(values of userInput.attributes){
+     console.log(values);
+   }
+-------------------------------------------------------------------------
+31 -Setting & Getting inline Styles
+
+1.setAttribute
+2.Direct Property access
+3.cssText
+
+ //1.setAttribute
+  const btnEl =document.querySelector("#input-food-container button");
+  // btnEl.setAttribute("style","background-color: royalblue;border: none;
+  padding: 2px 15px;color: #fff;border-radius: 2px;cursor: pointer;");           
+
+//2.Direct Property access
+  console.log(btnEl.style);
+
+  btnEl.style.padding="2px 15px";
+  btnEl.style.backgroundColor="royalblue";
+  btnEl.style.border="none";
+  btnEl.style.color="#fff";
+  btnEl.style.borderRadius="2px";
+  btnEl.style.cursor="pointer";
+
+//3.cssText
+btnEl.style.cssText="background-color: royalblue;border: none;padding: 2px 15px;color: #fff;border-radius: 2px;cursor: pointer;"
+
+console.log(btnEl.style);
+
+//Getting the style
+console.log(btnEl.style.padding);
+console.log(btnEl.style.border);
+console.log(btnEl.style.backgroundColor);
+
+//4.getComputedStyle() meathod
+  //window meathod
+
+const overStateinput=document.querySelector('.input-parent button');
+console.log(overStateinput);
+
+console.log(window.getComputedStyle(overStateinput,":hover"));
+------------------------------------------------------------
+32 -Setting & Getting Class styles
+
+
+//Manipulations
+classlist.
+//add
+//contains
+//replace 
+//remove
+//toggle
+
+//add
+userInput.classList.add('newclassname4');
+//contains
+   //class is here return true otherwise false
+console.log(userInput.classList.contains('newclassname4'));
+//replace 
+   //replace the class name
+   //it is return true
+console.log(userInput.classList.replace('newclassname4','newclassname444'));
+//remove
+console.log(userInput.classList.remove('newclassName2'))
+//toggle
+console.log(userInput.classList.toggle('newclassName2'))
+
+console.log(userInput.classList);
+
+//task: show div based on click (toggle)
+ hideBtn.addEventListener('click',()=>{
+     if( inputDiv.style.display ==="none"){
+        hideBtn.style.backgroundColor="gray";
+        hideBtn.innerHTML="hide div";
+        inputDiv.style.display="block";
+     } 
+     else{
+         inputDiv.style.display ="none";
+         hideBtn.style.backgroundColor="royalblue";
+         hideBtn.innerHTML="show text";
+     }
+ });
+----------------------------------------------------------------------------------------------------
+33. DOM Animations using javascript  
+
+hideBtn.addEventListener('click',()=>{
+   if(inputDiv.classList.contains('hide')){
+      inputDiv.classList.remove('hide');
+      hideBtn.innerHTML="hide div";
+      hideBtn.style.backgroundColor="gray";
+   }
+   else{
+      inputDiv.classList.add('hide');
+      hideBtn.style.backgroundColor="royalblue";
+      hideBtn.innerHTML="show text";
+   }
+});
+
+----------------------------------------------------------------------------
+34. Adding Event Listeners & Event Object
+
+
+<body onclick="alert('authered by praveen kumar')">
+
+<body onclick="location.href='https:google.com'">
+
+
+<body oncontextmenu="return false">
+
+//inline event  ex attribute
+
+ <body onclick="alert('authered by praveen kumar')">
+
+//inline properties
+
+ const spanEL =document.querySelector('header span');
+ console.log(spanEL);
+
+ spanEL.onclick = function(){
+     alert("Authored by Praveen kumar");
+ };
+
+ 
+===============================================
+//eventObject
+
+//tradional meathod
+   //this property refer the same object
+//arrow function 
+   //this property refer the window object
+
+
+//tradional function
+--------------------
+
+ function handleCreditMsg(){
+     console.dir(this);
+ }
+
+//arrow meathod
+----------------
+  const handleCreditMsg =(event)=>{
+     alert("THis alert created software enginner praveen"); 
+     console.log(event.target);
+     console.log(this); //this is refer the window object
+     //prefer
+       //event.target this type
+ };
+
+
+const spanEL =document.querySelector('header span');
+spanEL.addEventListener('click',handleCreditMsg);
+
+----------------------------------------------------------------
+35. Removing DOM Event listeners
+
+setTimeout( ()=>{
+   spanEL.removeEventListener('click',handleCreditMsg);
+},5000)
+
+========
+//when we need button work one time
+
+ const handleCreditMsg =(event)=>{
+     console.log('this is click event work one time')
+
+     spanEL.removeEventListener('click',handleCreditMsg);
+ }
+
+ spanEL.addEventListener('click',handleCreditMsg);
+Or
+ spanEL.addEventListener('click',handleCreditMsg,{ once:true});
+
+----------------------------------------------------------------------
+36.Event Bubbling ,capturing & propagation
+-------------------------------------------
+//futhure event delecations
+
+capturing
+---------
+dom tree to target elemnet
+by default is false
+
+bubbling
+---------
+target element to dom tree
+ functions
+  stopPropagation()
+  stopImmediatePropagation()
+
+//stopPropogation();
+ stop propogation same div only work same div
+ Doesn't work,but another listener will work
+
+//stopImmediatePropagation();
+  stop immediatePropagation removes all active event listeners 
+
+const form=document.querySelector('form');
+const div=document.querySelector('form div');
+const p=document.querySelector('form div p');
+
+form.addEventListener('click',(event)=>
+{
+  alert('form tag');
+  //console.dir(`target:${event.target.tagName},this:${form.tagName}`);
+});
+
+//-------------------------------
+div.addEventListener('click',(event)=>{
+ alert('div element');
+
+    //Stop Bubbling
+  // event.stopPropagation();
+
+  // Removes all active event listeners 
+  event.stopImmediatePropagation();
+});
+
+p.addEventListener('click',()=>{
+    alert('p element')
+});
+
+div.addEventListener('click',(event)=>{
+    alert('this is a another div element'); 
+});
+
+bubbling event and capturing event
+----------------------------------
+
+for(let ele of document.querySelectorAll("form,form *")){
+
+ //event Capture 
+  ele.asddEvenetListener('click',()=>{},{capture:true})  
+ 
+  ele.addEventListener('click',()=>{
+    console.log(`capture phase ${ele.tagName}`)
+  },{capture:true});
+
+ //event bubble
+  ele.addEventListener('click',()=>{
+    console.log(`babble phase ${ele.tagName}`);
+  })
+}
+--------------------------------------------------------------------------------------------
+37. Preventing Browser Default Actions
+--------------------------------------
+
+//spa --single page applications
+//try to change (spa)
+
+<a onclick="return false" href="https://google.com">
+terms conditions
+</a> 
+
+Most properly use it
+<a onclick="event.preventDefault()" href="https://google.com">
+terms conditions
+</a> 
+
+
+preventDefualt();
+        >this is functions avoid reload
+        >this functions gives a mobile event like touch and drag
+Defaultprevent();
+       >default prevent find the preventDefualt() return true or false
+
+
+ formEl.addEventListener('submit',(event)=>{
+   event.preventDefault();  //stop default Actions
+   console.log('form submitted',inpuEl.value,checkBoxEL.checked)
+
+   console.log("defaultPrevented",event.defaultPrevented); //it check preventDefualt there or not
+ });
+=======================
+//passive:true
+       >>passive:true when use it avoid the preventDefault meathod gives error
+  
+formEl.addEventListener('submit',(event)=>{
+  console.log('form submitted',inpuEl.value,checkBoxEL.checked)
+
+  console.log("defaultPrevented",event.defaultPrevented); //it check preventDefualt there or not
+},{passive:true})
+
+--------------------------------------------------------------------------------
+38.Event Delegation & Dynamic event
+-----------------------------------
+ //adding the event parent access the all child
+
+
+document.addEventListener('click',(event)=>{
+   const id =event.target.dataset.toggleId;
+
+   if(!id) return; //ignore all;
+   const el=document.querySelector(`#${id}`);
+   el.hidden=!el.hidden //toggle function
+});
+
+const formEL =document.querySelector('#donate-form');
+
+formEL.addEventListener('submit',(event)=>{
+    const donateAmount =event.target.querySelector('input').value;
+    //getting value dollar simple
+    const spanValue= formEL.children[0].textContent;
+    alert(`Thank you donating ${spanValue} ${donateAmount}`);
+});
+
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

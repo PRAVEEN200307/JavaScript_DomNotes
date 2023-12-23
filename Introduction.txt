@@ -1,0 +1,219 @@
+Event
+  Something is happening
+
+Onclick="alert("You clicked the button")"
+
+alter("");
+conform("");
+prompt("");
+
+VARIABLE
+
+var
+let 
+const
+
+datatypes
+---------
+
+"Praveen" --string
+"2323" -- number
+
+FUNCTION
+-------
+hint: it is use to reusebility
+
+function greeting(){
+
+  con.log("Hey ,my name is " + firstNmae + "an last name "+ lastName)
+}
+
+greeting()
+
+ arrow functions 
+
+ const greeting =()=>
+ {
+
+ }
+
+ DOM MANIPULATIONS
+ ----------------
+html code object form
+
+document.image
+
+console.log
+(document.getElementById("guestName").innerText);
+                                     .textContent
+
+const Name= prompt("What is your full name")
+
+const guestNameTxt = doucument.getElementById("guestName")
+guestNmaetxt.innerText = Name 
+
+
+DOM(PART 3)
+-----------
+
+ static type
+   .we do specify data types
+
+ dynamic type programing lanuage
+   .like javascript
+
+ 
+ Object
+ -------
+  const sampleObj = new object()  // construtor
+  
+  const programing ={
+    programing:java
+    use: some app
+    summary : function(){
+      
+    }
+    summary :() =>{
+        // ES 6     
+    }
+   }
+  
+  console.log(programing)
+  console.log(programing.use)
+  
+  
+ Array
+ -----
+
+ const favfoods = ["Briyani","curd","Noodels"];
+ const favItmes = [{items:key}]
+ 
+ console.log(favfoods[2]);
+ console.log(favFood[2]);
+ 
+
+ array
+ object 
+ 
+ 
+
+
+ for
+ ---
+  
+ const spanE1 = doucment.queryselector('class_name');
+ console.log(spanE1);
+ 
+ const span E1 = document.querySelector('.color-red')
+ console.log(spanE1);
+ 
+ const showObj = document.querySelector(".object");
+ console.log(showObj);
+
+
+ // document.title
+ document.title="My Web";
+
+ const testAnotherEl= documen
+
+ GetElementsByClassName
+
+ const testAnotherE1 = document.getElementsByClassName('test-another')
+ console.log(testAnotherE1[0].textContent);
+
+ getElementsByName
+
+ getElementsTagName
+  
+ const spanEls= document.getElementsByTagName('span')
+ console.log(spanEls[1].textContent);
+
+ image
+ document.title
+ document.images
+
+ SOCIAL NETWORKS --MOVIES
+ querySelectorALL
+ 
+  
+ ul
+
+ const ulEl = document.getElementsByTagName("ul");
+ console.log(ulE1.items(0));
+ 
+ 
+ LOOP -- frontent when display the content
+ ----
+ document.html
+ 
+ 
+ for 
+ for-in
+ for-of
+ while
+ do-while
+ forEach
+
+ 
+ for(initilization;condition;increment/decrement){
+ }
+----------------- 
+ while(condition){
+   initilization
+   incremnet/decrement
+ }
+-----------------------
+ do{
+   initilization
+   incremnet/decrement
+ }
+ while(condition) 
+------------------------
+  
+for-in
+
+const obj ={
+  key1:"value1",
+  key2:"value2",
+}
+
+
+for(let name in obj){
+ console.log(obj[name]);
+}
+
+for of
+-------
+
+for(let name of ulChilders){
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
