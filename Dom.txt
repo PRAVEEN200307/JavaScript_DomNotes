@@ -15,7 +15,7 @@ layout struture
 
 What is dom
  The W3c Document Object model is a platform and language-languae-neutral interfae that allows programs
-and script to dunamically access and update the contet ,strutuer and stle of a document.
+and script to dunamically access and update the contet ,strutuer and style of a document.
 
 The w3c Dom standard in separated into 3 different parts:
   .Core Dom -standard model for all document types
@@ -34,7 +34,7 @@ window Obect
 
 
 console.log(window.innerHeight);
-console.log(window.innerWidth)
+console.log(window.innerWidth);
 
 window.open("https://google.com");
 
@@ -108,7 +108,7 @@ document.write(person.greetUser());
 console.log(userNAME,placeInput);
 ---------------------------------------------
 domcontentLoded
-  >html agter give domcontentloded
+  >html after give domcontentloded
   >it is work head tag
   >work cache memeory
 window.load
@@ -186,7 +186,7 @@ console.log(allFood);
 
 -------------------------------------------------------------------
 16. Creating DOM elements using javascript
---------------------------------------
+------------------------------------------
 creating class name
 div.classname ="alert";
 
@@ -380,7 +380,7 @@ btn.addEventListener('click',()=>{
    li.className="list-items"
    foodContaiener.append(li);
 });
-//Clone
+//Cloned
 const  AsyncBtn=document.getElementById('AsyncBtn');
 
 AsyncBtn.addEventListener('click',()=>{

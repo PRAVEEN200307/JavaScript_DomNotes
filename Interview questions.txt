@@ -1,0 +1,90 @@
+interview for questions for dom
+--------------------------------
+
+what is dom?
+ dom is a document object
+ model html css covern the
+ code the object so is
+ called dom
+
+ represents the page as nodes
+ and object .it help to connect the
+ programming language
+
+2.what are the levels involved
+ in dom?
+
+ .core dom
+      basic level of code
+ .html dom
+ .xml dom
+
+3.what is javascipt and 
+ how javascript worked with dom
+
+>javascript is programing language
+
+4.window and document
+
+window
+ window explore the window
+document
+ load documetn object
+
+5.document.onload
+ onlload  is a event using event
+ window.onload
+ windos documet fire first
+
+6.is atribute similiar to property?
+
+attributes are represent in html
+inside the start tag
+ 
+7.async and defer
+defer
+ defer is a execute after html document load
+async
+ async is a executed when i load
+
+8.what are the different ways to 
+get an element form DOm?
+
+>getElementById to get a element
+that has the provided ld.
+
+>getElementsByclassName()
+>getElemntsByTagName()
+>queryselector()
+>queryselectorall()
+>getElementByName
+>getElementsBYTagNameNs
+
+what is the fastest way
+to select elements by using css
+selector?
+
+getElementById();
+getElementsByclassName();
+
+
+what is DOm Nodes?
+elements,attributes,text.etc
+
+what is nodeList in DOm?
+ A Nodelist is a like(collection)
+of nodes extracted ofrom, adocument
+
+why con't we use ForEach or similar
+array methods on a NodeList?
+
+
+34:44
+
+
+
+
+
+
+
+

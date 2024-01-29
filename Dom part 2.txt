@@ -2,7 +2,7 @@
 ------------------------------------
 
 //setAttribute
-userInput.setAttribute('value',`${firstName}`);
+   userInput.setAttribute('value',`${firstName}`);
 
 //getAttribute
    gives a values of elements
@@ -379,7 +379,6 @@ formEL.addEventListener('submit',(event)=>{
     const spanValue= formEL.children[0].textContent;
     alert(`Thank you donating ${spanValue} ${donateAmount}`);
 });
-
 
 -------------------------------------------------------------------------------------------
 

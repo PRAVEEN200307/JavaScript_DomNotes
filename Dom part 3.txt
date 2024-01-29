@@ -1,0 +1,330 @@
+   click
+   dblclick
+   mosuedown
+   mouseup
+   mouseout
+   mouseover
+
+   mouseenter
+   mouseleave
+--------------------------------------
+39. Mouse Events 
+----------------
+
+//ignoreing the copy the event
+ document.addEventListener('copy',(event)=>{
+   event.preventDefault();
+  alert("Copied is prohibited")
+ });
+
+
+//Copy event
+document.addEventListener('copy',(event)=>{
+  event.preventDefault();
+  alert("Copied is prohibited")
+});
+
+Task:
+   //create an mouse tester app which should display respective
+ message when that button is clicked.
+
+ //based on the click 
+ //you have click
+
+document.addEventListener('mouseup',(event)=>{
+  switch(event.which){
+    case 1:
+        console.log("you have clicked left key");
+        break;
+    case 2:
+        console.log("you have clicked middle key");
+        break;
+    default:
+        console.log("you have clicked right key");
+        break;
+  }
+});
+---------------------------------------------------------
+40. javascript keyboard Events 
+-------------------------------
+keydown
+keyup
+
+//keydown
+document.addEventListener("keydown",(event)=>{
+ console.log(event.type,event);
+})
+//keyup
+document.addEventListener("keyup",(event)=>{
+  console.log(`${event.type},${event.code},${event.key}`);
+ console.log(event);
+});
+----------------------------------------------------------------
+41.Accessing Forms and Elements
+-------------------------------
+/**
+ * document
+ * forms
+ *   using inded[0]
+ *   names
+ * elements
+ *    using inded[0]
+ *    names
+ * destruture
+ *   >this is good way to code easy
+ */
+
+hint --see the github get more information (accessing forms and elements)
+----------------------------------------------------------------------
+42- summit event and Formdata
+-----------------------------
+summit event
+form data
+  it is a interface give a form data event
+  form 
+form meathod
+  keys
+  values
+  get
+  has
+  delect
+  forEach
+  entries
+  set
+----------------------------------------------------------------------
+43- transforming HTML FormData to server
+----------------------------------------
+  
+const formEl =document.forms.feedback;
+
+const handleSubmit=(event)=>{
+  event.preventDefault();
+
+  const formdata=new FormData(formEl);
+  const data =[...formdata.entries()]
+  const dataPosting =data.map(([key,value])=>`${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join("&");
+  console.log(dataPosting);  //old meathod
+
+  //interface  //new way
+  const dataURlserch=new URLSearchParams(formdata).toString();
+  console.log(dataURlserch);
+
+
+  //json
+  //object fromEntries --itirate to object 
+  const object =JSON.stringify(Object.fromEntries(formdata));
+  console.log(object);
+
+}
+formEl.addEventListener("submit",handleSubmit);
+
+----------------------------------------------------------------------
+44 -Posting FormData via Fetch API 
+----------------------------------
+
+const formEl=document.forms.feedback
+
+const handleSubmit =(event)=>{
+   event.preventDefault();
+
+    const formdata=new FormData(formEl);
+    const formdataOb =JSON.stringify(Object.fromEntries(formdata));
+  //XMLHttpRequest
+  const xhr =new XMLHttpRequest();
+  xhr.open("GET","https://reqres.in/api/users/2",true);
+  xhr.onload=function(){
+      const obj =JSON.parse(xhr.responseText);
+      document.querySelector('#response').innerText = obj.data.first_name
+  }
+ xhr.send();//old way
+
+
+ //fetch, axis
+  //post meathod have body
+
+    fetch('https://reqres.in/api/users/2',{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:formdataOb
+    });
+ 
+    //GET MEATHOD
+    --------------
+     fetch('https://reqres.in/api/users?page=2',{
+       method:"GET",
+     })
+     .then(res => res.json())
+     .then(data => document.querySelector("#response").innerText=JSON.stringify(data.data));
+
+}
+formEl.addEventListener("submit",handleSubmit);
+-----------------------------------------------------------------
+45.javascript forms Handling input Events
+------------------------------------------
+
+  //!.Atributes
+  nameEL.value="praveen";
+  //nameEL.disabled='true';
+  nameEL.readOnly='true';
+  console.dir(nameEL.min);
+
+ focus
+ blur
+ input
+   aaaa
+   aaa
+   aa
+   a
+ change
+
+
+  //meathods
+    nameEL.focus();
+
+ other methods
+ cut
+ copy 
+ paste
+
+Task: crete a One-way binding,when the name field changes,
+it should greate like hello (EnteredInput) in real time
+
+const nameInput =document.querySelector('#nameInput');
+
+const handleChange = (event)=>{
+  const fullNameValue =event.target.value;
+  nameInput.innerText =`hello ${fullNameValue} `;
+}
+nameEL.addEventListener("input",handleChange);
+-------------------------------------------------------------------
+46. Handling Radio Input Elements
+------------------------------------
+const formsEl =document.forms.feedback;
+let nameEL=formsEl.elements.fullname;
+
+
+const categoryEl=formsEl.elements.type;
+
+const allCategories =[...categoryEl]
+
+const catagoresParnetEL =document.querySelector("#categoryes");
+
+// console.log(catagoryes);
+// console.log(allCategories);
+
+//attribute
+  // allCategories.forEach(cateogory =>{
+  //   console.log(cateogory.value);
+  //   console.log(cateogory.checked);
+  // })
+
+//event
+//  const handleChange=(event)=>{
+   
+//       // const checked=allCategories.find(category =>{
+//       //   return category.checked;
+//       // })
+//       // console.log("selected :",checked.value);
+    
+//     console.log(event.target.value);
+//  }
+//  catagoryes.addEventListener("change",handleChange);
+
+//meathod
+//for server process radio check
+// allCategories[1].select();
+// allCategories[1].checked=true;
+------------------------------------------------------------------------------
+47.Handling checkbox input Elements 
+
+
+//forms input handle
+
+const formsEl =document.forms.feedback;
+const hobbiesEl =formsEl.elements.hobbies;
+
+
+const terms =formsEl.elements.terms
+
+//Get properties & Methods
+  //console.log(hobbiesEl[0].value)
+
+//attribute
+  //hobbiesEl[0].checked =true;
+  //terms.checked=true;
+  //terms.indeterminate=true;
+  console.log(terms.value);
+//event
+  terms.addEventListener('change',(event)=>{
+      console.log(event.target.checked);
+  })
+//meathod
+terms.select();
+terms.checked = true;
+
+-------------------------------------------------------------------------------
+48. Handling HTML Select tag Elements javaScript DOM
+------------------------------------------------------
+
+properties
+ selectedIndex
+ options
+event listener
+  change event
+
+countryEl.addEventListener('change',(event)=>{
+    //console.log(event.target.options[event.target.selectedIndex]);
+    // console.log(event.target.options[event.target.selectedIndex].value);
+    // console.log(event.target.options[event.target.selectedIndex].text);
+  });
+
+add the options elements
+-----------------------
+
+const formsEl =document.forms.feedback;
+
+const countryEl =formsEl.elements.country;
+
+console.log(countryEl);
+
+
+const optionEl= document.createElement('option');
+optionEl.value = "FAZ";
+optionEl.text ="South Africa";
+
+  const options2= new Option('Indonesia','IDN');
+
+
+ //adding option to select tag  //prototype for optionsEL
+ countryEl.add(optionEl,2);
+ countryEl.add(options2,4);
+ countryEl.remove(5) //remove the index
+
+-----------------------------------------------------------------------------
+50: data-presistence  using local storge
+-----------------------------------------
+
+localStorage.setItem("myCat", "Tom");
+const cat = localStorage.getItem("myCat");
+localStorage.removeItem("myCat");
+localStorage.clear();
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
